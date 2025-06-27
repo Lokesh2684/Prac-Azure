@@ -1,21 +1,21 @@
-name: CI and Deploy
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the workflow will run
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
+  # First job: build
   build:
     runs-on: ubuntu-latest
-    outputs:
-      build-status: ${{ steps.build-step.outcome }}
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Run a one-line script
         run: echo Hello, world!
@@ -25,22 +25,11 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-      # Optional: simulate a build step
-      - name: Build project
-        id: build-step
-        run: echo "Build completed"
-
+  # Second job: deploy
   deploy:
-    needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    steps:                      # ✅ fixed indentation
+      - uses: actions/checkout@v4
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+      - name: Run a one-line script
+        run: echo Hello, from deploy!
