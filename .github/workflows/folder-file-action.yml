@@ -28,7 +28,7 @@ jobs:
         run: |
           $desktop = "$env:USERPROFILE\Desktop"
           if ((Test-Path "C:\Users\admin123\Desktop\F1") -and (Test-Path "C:\Users\admin123\Desktop\F2")) {
-            Write-Output "✅ File successfully copied and exists in both locations."
+            Write-Output "File successfully copied and exists in both locations."
           } else {
-            Write-Error "❌ File missing in one of the folders!"
+            Write-Error "File missing in one of the folders!"
           }
