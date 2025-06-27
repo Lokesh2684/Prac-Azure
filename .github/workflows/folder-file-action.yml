@@ -26,7 +26,7 @@ jobs:
  
       - name: Validate file exists in both folders
         run: |
-          $desktop = "$env:USERPROFILE\Desktop"
+          $desktop = "C:\Users\admin123\Desktop"
           if ((Test-Path "C:\Users\admin123\Desktop\F1") -and (Test-Path "C:\Users\admin123\Desktop\F2")) {
             Write-Output "File successfully copied and exists in both locations."
           } else {
